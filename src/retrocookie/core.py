@@ -27,7 +27,7 @@ def temporary_repository() -> Iterator[git.Repository]:
 
 def find_template_directory(repository: git.Repository) -> Path:
     """Locate the subdirectory with the project template."""
-    tokens = "{{", "cookiecutter", "}}"
+    tokens = "§[", "cookiecutter", "]§"
     for path in repository.path.iterdir():
         if path.is_dir() and all(x in path.name for x in tokens):
             return path.relative_to(repository.path)
